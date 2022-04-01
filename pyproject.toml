@@ -6,6 +6,11 @@ authors = ["Shikosai32"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+fastapi = "^0.75.0"
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
+deta = "^1.1.0"
+python-multipart = "^0.0.5"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"
