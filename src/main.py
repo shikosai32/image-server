@@ -1,9 +1,10 @@
 import os
 from typing import Optional
-from fastapi import FastAPI, File, UploadFile, Header
-from fastapi.responses import HTMLResponse, StreamingResponse
+
 from deta import Deta
 from dotenv import load_dotenv
+from fastapi import FastAPI, File, Header, UploadFile
+from fastapi.responses import StreamingResponse
 
 load_dotenv()
 
@@ -15,9 +16,11 @@ app = FastAPI()
 deta = Deta(PROJECT_KEY)
 drive = deta.Drive(DRIVE_NAME)
 
+
 @app.get("/")
 def root():
     return "Hi"
+
 
 @app.get("/{name}")
 def get_img(name: str):
@@ -27,14 +30,18 @@ def get_img(name: str):
     else:
         return f"Not Found {name}.png"
 
+
 @app.post("/{name}")
-def upload_img(name: str, file: UploadFile = File(...), token: Optional[str] = Header(None)):
+def upload_img(
+    name: str, file: UploadFile = File(...), token: Optional[str] = Header(None)
+):
     if token == TOKEN:
         f = file.file
         res = drive.put(name, f)
         return res
     else:
         return "Invalid TOKEN"
+
 
 @app.delete("/{name}")
 def delete_img(name: str, token: Optional[str] = Header(None)):
