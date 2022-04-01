@@ -1,0 +1,25 @@
+{
+    "name": "image-server",
+    "description": "save images with deta",
+    "runtime": "python3.9",
+    "env": [
+        {
+            "key": "PROJECT_KEY",
+            "description": "deta project key",
+            "value": null,
+            "required": true
+        },
+        {
+            "key": "DRIVE_NAME",
+            "description": "name of drive",
+            "value": "drive",
+            "required": true
+        },
+        {
+            "key": "TOKEN",
+            "description": "token",
+            "value": null,
+            "required": true
+        }
+    ]
+}
